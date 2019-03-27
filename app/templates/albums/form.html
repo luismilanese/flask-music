@@ -1,0 +1,41 @@
+{% extends "albums/base.html" %}
+
+{% block main_content %}
+<h1>Add new record</h1>
+<form method="post">
+    {{ form.csrf_token }}
+    <div class="form-group">
+        <label for="title">Title</label>
+        {{ form.title(class="form-control") }}
+
+        {% if form.errors.title %}
+        <div class="alert alert-danger">
+            {{ form.errors.title }}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="personal_note">Personal note</label>
+        {{ form.personal_note(class="form-control") }}
+
+        {% if form.errors.personal_note %}
+        <div class="alert alert-danger">
+            {{ form.errors.personal_note }}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="artists">Artist(s)</label>
+        {{ form.artists(class="form-control") }}
+
+        {% if form.errors.artists %}
+        <div class="alert alert-danger">
+            {{ form.errors.artists }}
+        </div>
+        {% endif %}
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+</form>
+{% endblock %}
