@@ -29,6 +29,11 @@
     <div class="form-group">
         <label for="artists">Artist(s)</label>
         {{ form.artists(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="new_artist">Add new artists <small>(semicolon separated)</small></label>
+        {{ form.new_artists(class="form-control") }}
 
         {% if form.errors.artists %}
         <div class="alert alert-danger">
@@ -36,6 +41,7 @@
         </div>
         {% endif %}
     </div>
+
     <button class="btn btn-primary" type="submit">Save</button>
 </form>
 {% endblock %}

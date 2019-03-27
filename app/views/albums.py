@@ -19,7 +19,7 @@ def add_album():
 
     if form.validate_on_submit():
         try:
-            album_handling.insert(form)
+            album_handling.insert_album(form)
         except Exception as e:
             print(str(e))
 
