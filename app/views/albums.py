@@ -4,7 +4,7 @@ from flask import render_template
 from app import app
 from app.forms.album_form import AlbumForm
 from app.models.album import Album, Artist
-from app.services import album_handling
+from app.repositories import album_repository
 from app import db
 
 @app.route("/")
@@ -19,7 +19,7 @@ def add_album():
 
     if form.validate_on_submit():
         try:
-            album_handling.insert_album(form)
+            album_repository.insert_album(form)
         except Exception as e:
             print(str(e))
 

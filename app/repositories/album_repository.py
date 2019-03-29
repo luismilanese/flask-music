@@ -1,6 +1,6 @@
 from app import db
 from app.models.album import Album, Artist
-from app.services.artist_handling import insert_artists
+from app.repositories.artist_repository import insert_artists
 
 
 def insert_album(form):
