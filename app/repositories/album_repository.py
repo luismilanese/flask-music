@@ -6,8 +6,9 @@ from app.repositories.artist_repository import insert_artists
 def insert_album(form):
     title = form.title.data
     personal_note = form.personal_note.data
+    wish_list = form.wish_list.data
 
-    new_album = Album(title=title, personal_note=personal_note)
+    new_album = Album(title=title, personal_note=personal_note, wish_list=wish_list)
 
     artists = form.artists.data
 
