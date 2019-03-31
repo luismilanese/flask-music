@@ -1,6 +1,6 @@
 from urllib import request
 
-from flask import render_template
+from flask import render_template, redirect, url_for
 from app import app
 from app.forms.album_form import AlbumForm
 from app.models.album import Album, Artist
@@ -22,6 +22,7 @@ def add_album():
     if form.validate_on_submit():
         try:
             album_repository.insert_album(form)
+            return redirect(url_for("all"))
         except Exception as e:
             print(str(e))
 
@@ -37,9 +38,17 @@ def edit_album(id):
     if form.validate_on_submit():
         try:
             album_repository.update_album(id, form)
+            return redirect(url_for("all"))
         except Exception as e:
             print(str(e))
 
     form.artists.data = [artist.id for artist in album.artists]
 
     return render_template("albums/form.html", form=form)
+
+
+@app.route("/all")
+def listing():
+    albums = album_repository.list_albums()
+
+    return render_template("albums/list.html", albums=albums)

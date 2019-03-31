@@ -45,6 +45,10 @@ def update_album(id, form):
     db.session.commit()
 
 
+def list_albums():
+    return Album.query.all()
+
+
 def get_by_id(id):
     return Album.query.filter_by(id=id).first()
 

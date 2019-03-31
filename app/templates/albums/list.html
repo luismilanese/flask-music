@@ -1,0 +1,25 @@
+{% extends "albums/base.html" %}
+
+{% block main_content %}
+    <h1>All records</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Artists</th>
+                <th>Title</th>
+                <th>My personal notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for album in albums %}
+                <tr>
+                    <td>
+                        {% for artist in album.artists %} {{ artist }} {{ "/" if not loop.last }} {% endfor %}
+                    </td>
+                    <td>{{ album.title }}</td>
+                    <td>{{ album.personal_note }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
