@@ -22,7 +22,7 @@ def add_album():
     if form.validate_on_submit():
         try:
             album_repository.insert_album(form)
-            return redirect(url_for("all"))
+            return redirect(url_for("listing"))
         except Exception as e:
             print(str(e))
 
@@ -38,7 +38,7 @@ def edit_album(id):
     if form.validate_on_submit():
         try:
             album_repository.update_album(id, form)
-            return redirect(url_for("all"))
+            return redirect(url_for("listing"))
         except Exception as e:
             print(str(e))
 
