@@ -22,3 +22,29 @@ def insert_album(form):
 
     db.session.add(new_album)
     db.session.commit()
+
+
+def update_album(id, form):
+    album = get_by_id(id)
+    album.title = form.title.data
+    album.personal_note = form.personal_note.data
+    album.wish_list = form.wish_list.data
+
+    album.artists = [] # removing former relationship to create it again below
+
+    artists = form.artists.data
+
+    if form.new_artists.data:
+        new_artists = insert_artists(form.new_artists.data)
+        for artist_id in new_artists:
+            artists.append(artist_id)
+
+    for artist_id in artists:
+        album.artists.append(Artist.query.filter_by(id=artist_id).first())
+
+    db.session.commit()
+
+
+def get_by_id(id):
+    return Album.query.filter_by(id=id).first()
+

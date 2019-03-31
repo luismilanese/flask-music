@@ -14,3 +14,7 @@ def insert_artists(names_string):
     db.session.commit()
 
     return new_artists_id
+
+
+def get_all_artists():
+    return [(a.id, a.name) for a in Artist.query.order_by('name')]
