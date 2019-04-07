@@ -5,7 +5,8 @@ from app import db
 class TimestampMixin(object):
     created = db.Column(
         db.DateTime, nullable=False, default=datetime.utcnow())
-    updated = db.Column(db.DateTime, onupdate=datetime.utcnow())
+    updated = db.Column(db.DateTime, nullable=True, onupdate=datetime.utcnow())
+    deleted = db.Column(db.DateTime, nullable=True)
 
 
 albums_artists = db.Table('albums_artists',

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from app import db
 from app.models.album import Album, Artist
 from app.repositories.artist_repository import insert_artists
@@ -47,12 +49,12 @@ def update_album(id, form):
 
 
 def delete_album(album):
-    db.session.delete(album)
+    album.deleted = datetime.now()
     db.session.commit()
 
 
 def list_albums():
-    return Album.query.all()
+    return Album.query.filter_by(deleted=None).all()
 
 
 def get_by_id(id):
