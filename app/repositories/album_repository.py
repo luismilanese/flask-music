@@ -30,7 +30,8 @@ def update_album(id, form):
     album.personal_note = form.personal_note.data
     album.wish_list = form.wish_list.data
 
-    album.artists = [] # removing former relationship to create it again below
+    # removing former relationship to create it again below
+    album.artists = []
 
     artists = form.artists.data
 
@@ -42,6 +43,11 @@ def update_album(id, form):
     for artist_id in artists:
         album.artists.append(Artist.query.filter_by(id=artist_id).first())
 
+    db.session.commit()
+
+
+def delete_album(album):
+    db.session.delete(album)
     db.session.commit()
 
 

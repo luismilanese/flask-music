@@ -94,6 +94,18 @@ def edit_album(id):
     return render_template("albums/form.html", form=form)
 
 
+@app.route("/delete/<int:id>", methods=["GET"])
+@login_required
+def delete_album(id):
+    album = album_repository.get_by_id(id)
+
+    try:
+        album_repository.delete_album(album)
+        return redirect(url_for("listing"))
+    except Exception as e:
+        print(str(e))
+
+
 @app.route("/all")
 def listing():
     albums = album_repository.list_albums()
