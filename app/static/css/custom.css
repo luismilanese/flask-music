@@ -1,0 +1,8 @@
+ul.admin-actions {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+ul.admin-actions li { display: inline; }
+ul.admin-actions li i { margin: 0 5px; }
