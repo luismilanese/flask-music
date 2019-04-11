@@ -1,13 +1,14 @@
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user, login_user, logout_user
 from sqlalchemy.sql.functions import user
-
+from flask import jsonify
 from app import app, login_manager
 from app.forms.album_form import AlbumForm
 from app.forms.login_form import LoginForm
 from app.models.user import User
 from app.repositories import album_repository
 from app.repositories.artist_repository import get_all_artists
+from app.services.import_from_gspread import importer
 
 
 @login_manager.user_loader
@@ -111,3 +112,13 @@ def listing():
     albums = album_repository.list_albums()
 
     return render_template("albums/list.html", albums=albums)
+
+@app.route("/import-from-spreadsheet")
+@login_required
+def import_from_gspread():
+    try:
+        result = importer()
+    except Exception as e:
+        print(str(e))
+
+    return jsonify(result)

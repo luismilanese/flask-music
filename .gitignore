@@ -309,4 +309,7 @@ GitHub.sublime-settings
 # Ignore all local history of files
 .history
 
+### Confidential ###
+cert/*
+
 # End of https://www.gitignore.io/api/flask,python,pycharm,sublimetext,visualstudiocode
