@@ -7,6 +7,8 @@ from app.models.album import Album, Artist
 class Importer:
     def importer(self):
         albums = self._read_from_gspread()
+        new_albums = []
+
         for album in albums:
             a = Album(title=album['title'], personal_note=album['personal_notes'], wish_list=album['wish_list'])
             if not self._album_already_exists(album=a):
@@ -15,8 +17,9 @@ class Importer:
                     a.artists.append(artist)
                 db.session.add(a)
                 db.session.commit()
-            else:
-                print('Já existe')
+                new_albums.append(a)
+
+        return new_albums
 
     def _album_already_exists(self, album):
         return Album.query.filter_by(title=album.title).first()

@@ -118,8 +118,8 @@ def listing():
 @login_required
 def import_from_gspread():
     try:
-        result = Importer().importer()
-
+        albums = Importer().importer()
+        return render_template("albums/import.html", albums=albums)
     except Exception as e:
         print(str(e))
 
