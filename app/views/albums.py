@@ -8,7 +8,7 @@ from app.forms.login_form import LoginForm
 from app.models.user import User
 from app.repositories import album_repository
 from app.repositories.artist_repository import get_all_artists
-from app.services.import_from_gspread import importer
+from app.services.import_from_gspread import Importer
 
 
 @login_manager.user_loader
@@ -113,12 +113,14 @@ def listing():
 
     return render_template("albums/list.html", albums=albums)
 
+
 @app.route("/import-from-spreadsheet")
 @login_required
 def import_from_gspread():
     try:
-        result = importer()
+        result = Importer().importer()
+
     except Exception as e:
         print(str(e))
 
-    return jsonify(result)
+
