@@ -1,7 +1,8 @@
 {% extends "albums/base.html" %}
 
 {% block main_content %}
-    <h1>All records</h1>
+    <h1>{% block title %}{% endblock %}</h1>
+    {% block list_description %}{% endblock %}
     <table class="table table-striped">
         <thead>
             <tr>

@@ -39,7 +39,7 @@ class Importer:
         return artists
 
     def _read_from_gspread(self):
-        scope = ['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive']
+        scope = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
         creds = ServiceAccountCredentials.from_json_keyfile_name(app.config['GSPREAD_API_CERT'], scope)
         client = gspread.authorize(creds)
 

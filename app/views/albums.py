@@ -111,7 +111,7 @@ def delete_album(id):
 def listing():
     albums = album_repository.list_albums()
 
-    return render_template("albums/list.html", albums=albums)
+    return render_template("albums/albums_list.html", albums=albums)
 
 
 @app.route("/import-from-spreadsheet")
@@ -119,7 +119,7 @@ def listing():
 def import_from_gspread():
     try:
         albums = Importer().importer()
-        return render_template("albums/import.html", albums=albums)
+        return render_template("albums/imported_albums_list.html", albums=albums)
     except Exception as e:
         print(str(e))
 
