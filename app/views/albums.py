@@ -1,7 +1,5 @@
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user, login_user, logout_user
-from sqlalchemy.sql.functions import user
-from flask import jsonify
 from app import app, login_manager
 from app.forms.album_form import AlbumForm
 from app.forms.login_form import LoginForm
