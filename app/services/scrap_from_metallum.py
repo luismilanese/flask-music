@@ -27,7 +27,6 @@ class MetallumScrapper:
             soup = BeautifulSoup(markup=google_result.text, features='html.parser')
 
             if soup.find("div", {"id": "imagebox_bigimages"}):
-                l = soup.find_all('h3')[1:2]
                 return soup.find_all('h3')[1:2][0].find_parent('a')['href']
 
             return soup.find('h3').find_parent('a')['href']
