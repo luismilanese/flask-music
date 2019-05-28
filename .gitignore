@@ -311,6 +311,5 @@ GitHub.sublime-settings
 
 ### Confidential ###
 cert/*
-config.py
 
 # End of https://www.gitignore.io/api/flask,python,pycharm,sublimetext,visualstudiocode
